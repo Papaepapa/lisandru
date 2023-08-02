@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
-  <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
@@ -21,12 +19,48 @@
 
   <!-- Custom styles for this template -->
   <link href="css/grayscale.min.css" rel="stylesheet">
+  <script src="checkBox.js"></script>
+  <style>
+    
+  .link-button { 
+     background : none;
+     border: solid;
+     border-radius: 10%;
+     color: #FFD700;
+     cursor: pointer; 
+    }
+  .link-button:hover {
+    transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+    }
+    
+  </style>
+
 
 </head>
 
 <body id="page-top">
-  <py-script>print("papa e boss")</py-script>
-  <!-- Navigation -->
+<?php
+
+
+//whether ip is from share internet
+if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+    $ip_address = $_SERVER['HTTP_CLIENT_IP'];
+} //whether ip is from proxy
+elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+    $ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
+} //whether ip is from remote address
+else {
+    $ip_address = $_SERVER['REMOTE_ADDR'];
+}
+
+$cookie_name = $ip_address;
+$cookie_value =  "mere";
+setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
+
+?>
+
+
+<!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
       <a class="navbar-brand js-scroll-trigger" href="#page-top">Vin Lisandru</a>
@@ -45,11 +79,103 @@
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="#signup">Contact</a>
           </li>
+          <li class="nav-item">
+            <?php
+                session_start();
+                if( isset($_SESSION['email']) and ($_SESSION['email'] == "alex94_ex@yahoo.com")){
+                    echo "<a class='nav-link js-scroll-trigger' href='comanda.php'>Comenzi</a>";
+                }
+            ?>
+            
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#">
+                
+                <?php
+
+                $servername = "localhost";
+                $username = "root";
+                $password = "";
+                $db_name = "lisandru";
+                // Create connection
+                $conn = new mysqli($servername, $username, $password, $db_name);
+                
+                //session_start();
+                if(isset($_SESSION['user'])){
+                    echo  $_SESSION['user'];
+                }
+                else if ((isset($_POST['not_logged_in']) and $_POST['not_logged_in']=='not_logged_in' ) or isset($_SESSION['not_logged_in'])){
+                    echo "You are not loged in";
+                    if (!isset($_SESSION['not_logged_in'])){
+                        $_SESSION['not_logged_in'] = $_POST['not_logged_in'];
+                    }
+                    
+                }
+                else if (!isset($_SESSION['user'])){
+                    if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+                        $ip_address = $_SERVER['HTTP_CLIENT_IP'];
+                    } //whether ip is from proxy
+                    elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+                        $ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
+                    } //whether ip is from remote address
+                    else {
+                        $ip_address = $_SERVER['REMOTE_ADDR'];
+                    }
+
+                    $stack = array();
+                    $sql_select = "SELECT * FROM user where ip_adress='$ip_address'";
+                    $rows = mysqli_query($conn,$sql_select);
+                    if (mysqli_num_rows($rows) > 0) {
+                        while($row = mysqli_fetch_assoc($rows)) {
+                            array_push($stack, $row["Email"]);
+                            //$_SESSION[$row["id"]] = $row["Email"]; 
+                            //echo $row["Email"];
+                            }
+                        $_SESSION['users'] = $stack;
+                        header('Location: recognition_user.php');
+                    }
+                }
+                
+                else{
+                    echo  $_SESSION['user'];
+                }
+                
+                
+                ?>
+            </a>
+          </li>
+          <li class="nav-item">
+            <div class="nav-link js-scroll-trigger">
+                <?php
+                    
+                    if (!isset($_SESSION['user'])){
+                        echo "<a href='login.php'>"."Log in"."</a>";
+                    }
+                    else{
+                        echo "<a href='logout.php'>Log out</a>";
+                    }
+                ?>
+
+            </div>
+          </li>
+          <li class="nav-item">
+            <div class="nav-link js-scroll-trigger">
+                <?php
+
+                    if (isset($_SESSION['cost'])){
+                        
+                        echo "<a href='continut_cos.php'>cosul tau ".($_SESSION['cost']/10)."</a>";
+                        
+                    }
+                    
+                ?>
+
+            </div>
+          </li>
         </ul>
       </div>
     </div>
   </nav>
-
   <!-- Header -->
   <header class="masthead">
     <div class="container d-flex h-100 align-items-center">
@@ -94,9 +220,36 @@
       </div>
 
       <!-- Project One Row -->
-      <div class="row justify-content-center no-gutters mb-5 mb-lg-0" style='background-color:white;'>
+      <div id="rosu" class="row justify-content-center no-gutters mb-5 mb-lg-0" style='background-color:white;'>
         <div class="col-lg-6">
-          <img class="img-fluid" src="img/vinRosu2.jpg" alt="">
+          <img style="width:30%;" src="img/vinRosu2.jpg" alt="">
+          <div style="float:right;  margin-top:10%; border-left: 3px solid black;height: 100px;">
+			
+				<h4>
+						&nbsp;Lisandru - Rosu
+				</h4>
+				<p>&nbsp;&nbsp;10 euro</p>
+                <?php
+                    
+                    if (!isset($_SESSION['user'])){
+                        //echo "<a href='login.php' class='btn btn-primary js-scroll-trigger' style= 'margin-left:10%; width:100%'>Adaugă în coș</a>";
+                        echo "<form action='login.php' method='post'>";
+                        echo "<button class='link-button' style= 'margin-left:10%; text:'7%';width:100%'>Adaugă în coș</button><br><br>";
+                        echo "</form>";
+                    }
+                    else{
+                        echo "<form action='add_in_cos.php' method='post'>";
+                        echo "&nbsp;&nbsp;<input type='number' min='0' name='vin_rosu' style='width:20%;'> Sticle";
+                        echo "<button class='link-button' style= 'margin-left:10%; text:'7%';width:100%'>Adaugă în coș</button><br><br>";
+                        echo "</form>";
+                    }
+                    if (isset($_SESSION['vin_rosu'])){
+                        echo "Sticle in cosul tau ".$_SESSION['vin_rosu'];
+                    }
+                    
+                ?>
+			
+		  </div>
         </div>
         <div class="col-lg-6">
           <div class="bg-black text-center h-100 project">
@@ -112,10 +265,38 @@
       </div>
 
       <!-- Project Two Row -->
-      <div class="row justify-content-center no-gutters" style='background-color:white;'>
+      <div id="alb" class="row justify-content-center no-gutters" style='background-color:white;'>
         <div class="col-lg-6">
-		<div style='float:right; background-color:red;'>
-          <img class="img-fluid" src="img/vinAlb1.jpg" alt="">
+		<div style='float:right;'>
+          <img style="width:30%;" src="img/vinAlb1.jpg" alt="">
+          <div style="float:left;  margin-top:10%; border-right: 3px solid black;height: 100px;">
+			
+				<h4>
+						&nbsp;Lisandru - Alb
+				</h4>
+				<p>&nbsp;&nbsp;10 euro</p>
+                <?php
+                    
+                    if (!isset($_SESSION['user'])){
+                        echo "<form action='login.php' method='post'>";
+                        echo "<button class='link-button' style= 'margin-left:10%; text:'7%';width:100%'>Adaugă în coș</button><br><br>";
+                        echo "</form>";
+                        
+                    }
+                    else{
+                        echo "<form action='add_in_cos.php' method='post'>";
+                        echo "&nbsp;&nbsp;<input type='number' min='0' name='vin_alb' style='width:20%;'> Sticle";
+                        echo "<button class='link-button' style= 'margin-left:10%; text:'7%';width:100%'>Adaugă în coș</button><br><br>";
+                        echo "</form>";
+                    }
+                    if (isset($_SESSION['vin_alb'])){
+                        echo "Sticle in cosul tau ".$_SESSION['vin_alb'];
+                    }
+                    
+                    
+                ?>
+			
+		  </div>
 		</div> 
         </div>
         <div class="col-lg-6 order-lg-first">
@@ -132,9 +313,36 @@
       </div>
 	  
 	  <!-- Project Two Row -->
-      <div class="row justify-content-center no-gutters mb-5 mb-lg-0" style='background-color:white;'>
+      <div id="rose" class="row justify-content-center no-gutters mb-5 mb-lg-0" style='background-color:white;'>
         <div class="col-lg-6">
-          <img class="img-fluid" src="img/vinRose.jpg" alt="">
+          <img style="width:30%;" src="img/vinRose.jpg">
+		  <div style="float:right;  margin-top:10%; border-left: 3px solid black;height: 100px;">
+			
+				<h4>
+						&nbsp;Lisandru - Rose
+				</h4>
+				<p>&nbsp;&nbsp;10 euro</p>
+                <?php
+                    
+                    if (!isset($_SESSION['user'])){
+                        echo "<form action='login.php' method='post'>";
+                        echo "<button class='link-button' style= 'margin-left:10%; text:'7%';width:100%'>Adaugă în coș</button><br><br>";
+                        echo "</form>";
+                        
+                    }
+                    else{
+                        echo "<form action='add_in_cos.php' method='post'>";
+                        echo "&nbsp;&nbsp;<input type='number' min='0' name='vin_rose' style='width:20%;'> Sticle";
+                        echo "<button class='link-button' style= 'margin-left:10%; text:'7%';width:100%'>Adaugă în coș</button><br><br>";
+                        echo "</form>";
+                    }
+                    if (isset($_SESSION['vin_rose'])){
+                        echo "Sticle in cosul tau ".$_SESSION['vin_rose'];
+                    }
+                    
+                ?>
+			
+		  </div>
         </div>
         <div class="col-lg-6">
           <div class="bg-black text-center h-100 project">
