@@ -159,9 +159,24 @@
           <h2 class="text-white mb-5">Trimite gandurile tale aici!</h2>
 
           
-          <input type="email" class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" name="email" id="inputEmail" placeholder="Enter email address...">
-          <a href="trimitemail.html"><button type="submit" class="btn btn-primary mx-auto">Subscribe</button></a>
+          <!-- <input type="email" class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" name="email" id="inputEmail" placeholder="Enter email address...">-->
+          <!--<a href="trimitemail.html"><button type="submit" class="btn btn-primary mx-auto">Subscribe</button></a>-->
           
+          <form action="https://formsubmit.co/alex94.ex@gmail.com" method="POST">
+            <input type="text" class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" name="name" placeholder="Nume" required>
+            </br>
+            <input type="email" class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" name="email" placeholder="Email" required>
+            </br>
+            <textarea class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" name="message" placeholder="Mesajul tău" required></textarea>
+            </br>
+            <button type="submit" class="btn btn-primary mx-auto">Trimite</button>
+            
+            <!-- Opțional: Redirecționare după trimitere -->
+            <input type="hidden" name="_next" value="https://multumesc.com">
+            
+            <!-- Opțional: Dezactivează CAPTCHA -->
+            <input type="hidden" name="_captcha" value="false">
+        </form>
 
         </div>
       </div>
