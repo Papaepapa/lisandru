@@ -42,6 +42,9 @@
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="#signup">Contact</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#cart">Cart</a>
+          </li>
         </ul>
       </div>
     </div>
@@ -52,7 +55,7 @@
     <div class="container d-flex h-100 align-items-center">
       <div class="mx-auto text-center">
         <p>Scaneaza codul si decarca aplicatia android !</p>
-        <a href="https://papaepapa.github.io/LisandruWineShop/"><img src="img/logoaplicatie-removebg-preview.png" alt="Description of Image" width="300" height="300"></a>
+        <a href="https://papaepapa.github.io/LisandruWineShop/"><img src="img/logoaplicatie-removebg-preview.png" alt="Description of Image" width="200" height="200"></a>
         <h1 class="mx-auto my-0 text-uppercase">Lisandru</h1>
         <h2 class="text-white-50 mx-auto mt-2 mb-5">Pentru ca vinul se mai face si din struguri</h2>
         <a href="#about" class="btn btn-primary js-scroll-trigger">Get Started</a>
@@ -103,6 +106,9 @@
               <div class="project-text w-100 my-auto text-center text-lg-left">
                 <h4 class="text-white">Roșu</h4>
                 <p class="mb-0 text-white-50">Vinul rosu, rubiniu ,puternic dar si cuminte,cu un gust puternic fructat te duce in vie la fiecare sorbitura si aduce la suprafata ce e mai pur si mai inocent in ficare dintre noi.</p>
+                <label for="quantityRosu">Quantity:</label>
+                <input type="number" id="quantityRosu" name="quantityRosu" min="1" max="100" value="1">
+                <button class="btn btn-primary add-to-cart" data-product="Rosu">Add to Cart</button>
                 <hr class="d-none d-lg-block mb-0 ml-0">
               </div>
             </div>
@@ -123,6 +129,9 @@
               <div class="project-text w-100 my-auto text-center text-lg-right">
                 <h4 class="text-white">Alb</h4>
                 <p class="mb-0 text-white-50">Vinul alb-clar, vinul pur, adevarul in picaturi mici, aspru dar linistitor te tine cu picioarele pe pamant si iti aminteste de ceea ce e cu adevarat bun.</p>
+                <label for="quantityAlb">Quantity:</label>
+                <input type="number" id="quantityAlb" name="quantityAlb" min="1" max="100" value="1">
+                <button class="btn btn-primary add-to-cart" data-product="Alb">Add to Cart</button>
                 <hr class="d-none d-lg-block mb-0 mr-0">
               </div>
             </div>
@@ -141,6 +150,9 @@
               <div class="project-text w-100 my-auto text-center text-lg-left">
                 <h4 class="text-white">Rose</h4>
                 <p class="mb-0 text-white-50">Vinul rose, fratele mai mic si putin jucaus, uneori agitant alte ori impaciuitor reuseste sa creeze o legatura intre trup si suflet cum nici un alt vin nu o poate face.</p>
+                <label for="quantityRose">Quantity:</label>
+                <input type="number" id="quantityRose" name="quantityRose" min="1" max="100" value="1">
+                <button class="btn btn-primary add-to-cart" data-product="Rose">Add to Cart</button>
                 <hr class="d-none d-lg-block mb-0 ml-0">
               </div>
             </div>
@@ -151,6 +163,17 @@
     </div>
   </section>
 
+  <!-- Cart Section -->
+  <section id="cart" class="cart-section text-center">
+    <div class="container">
+      <h2 class="text-white mb-4">Your Cart</h2>
+      <ul id="cart-items" class="list-group">
+        <!-- Cart items will be dynamically added here -->
+      </ul>
+      <button class="btn btn-primary mt-3" id="checkout">Checkout</button>
+    </div>
+  </section>
+
   <!-- Signup Section -->
   <section id="signup" class="signup-section">
     <div class="container">
@@ -158,20 +181,18 @@
         <div class="col-md-10 col-lg-8 mx-auto text-center">
 
           <i class="far fa-paper-plane fa-2x mb-2 text-white"></i>
-          <h2 class="text-white mb-5">Trimite gandurile tale aici!</h2>
+          <h2 class="text-white mb-5">Trimite comanda ta aici!</h2>
 
-          
-          <!-- <input type="email" class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" name="email" id="inputEmail" placeholder="Enter email address...">-->
-          <!--<a href="trimitemail.html"><button type="submit" class="btn btn-primary mx-auto">Subscribe</button></a>-->
-          
-          <form action="https://formsubmit.co/alex94.ex@gmail.com" method="POST">
+          <form id="order-form" action="https://formsubmit.co/alex94.ex@gmail.com" method="POST">
             <input type="text" class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" name="name" placeholder="Nume" required>
             </br>
             <input type="email" class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" name="email" placeholder="Email" required>
             </br>
-            <textarea class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" name="message" placeholder="Mesajul tău" required></textarea>
+            <input type="tel" class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" name="phone" placeholder="Număr de telefon" required>
             </br>
-            <button type="submit" class="btn btn-primary mx-auto">Trimite</button>
+            <textarea class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" name="order" id="order-details" placeholder="Detalii comanda" readonly required></textarea>
+            </br>
+            <button type="submit" class="btn btn-primary mx-auto" id="submit-order">Trimite</button>
             
             <!-- Opțional: Redirecționare după trimitere -->
             <input type="hidden" name="_next" value="https://multumesc.com">
@@ -258,6 +279,53 @@
 
   <!-- Custom scripts for this template -->
   <script src="js/grayscale.min.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const cart = [];
+      let orderSubmitted = false;
+
+      document.querySelectorAll('.add-to-cart').forEach(button => {
+        button.addEventListener('click', function() {
+          const product = this.getAttribute('data-product');
+          const quantity = document.getElementById(`quantity${product}`).value;
+          cart.push({ product, quantity });
+          alert(`${quantity} ${product} has been added to your cart.`);
+          console.log(cart);
+          updateCart();
+        });
+      });
+
+      function updateCart() {
+        const cartItems = document.getElementById('cart-items');
+        const orderDetails = document.getElementById('order-details');
+        cartItems.innerHTML = '';
+        orderDetails.value = '';
+        cart.forEach(item => {
+          const li = document.createElement('li');
+          li.className = 'list-group-item';
+          li.textContent = `${item.quantity} x ${item.product}`;
+          cartItems.appendChild(li);
+          orderDetails.value += `${item.quantity} x ${item.product}\n`;
+        });
+      }
+
+      document.getElementById('order-form').addEventListener('submit', function(event) {
+        if (orderSubmitted) {
+          event.preventDefault();
+          alert('Order has already been submitted.');
+        } else {
+          orderSubmitted = true;
+          alert('Order submitted successfully.');
+        }
+      });
+
+      document.getElementById('checkout').addEventListener('click', function() {
+        alert('Proceeding to checkout...');
+        // Add checkout functionality here
+      });
+    });
+  </script>
 
 </body>
 
