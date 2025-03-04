@@ -69,11 +69,30 @@
       <div class="row">
         <div class="col-lg-8 mx-auto">
           <h2 class="text-white mb-4">Lisandru, vin de casa</h2>
-          <p class="text-white-50">Vinul din colectia Lisandu nu este doar o bautura ci mai degraba un elixir creat cu grija pentru orice persoana care is doreste sa deguste si sa savureze o bautura cu adevarat speciala.
-            <!--<a href="http://startbootstrap.com/template-overviews/grayscale/">the preview page</a>. The theme is open source, and you can use it for any purpose, personal or commercial.</p>-->
+          <p class="text-white-50">Vinul din colectia Lisandu nu este doar o bautura ci mai degraba un elixir creat cu grija pentru orice persoana care is doreste sa deguste si sa savureze o bautura cu adevarat speciala.</p>
         </div>
       </div>
-      <img src="img/label.jpg" class="img-fluid" alt="">
+      <div id="aboutCarousel" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="img/label.jpg" class="d-block w-100 carousel-img" alt="Label Image 1">
+          </div>
+          <div class="carousel-item">
+            <img src="img/eticheta.jpeg" class="d-block w-100 carousel-img" alt="Label Image 2">
+          </div>
+          <div class="carousel-item">
+            <img src="img/vinRosu2.jpg" class="d-block w-100 carousel-img" alt="Label Image 3">
+          </div>
+        </div>
+        <a class="carousel-control-prev" href="#aboutCarousel" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#aboutCarousel" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
     </div>
   </section>
 
@@ -323,6 +342,50 @@
       document.getElementById('checkout').addEventListener('click', function() {
         alert('Proceeding to checkout...');
         // Add checkout functionality here
+      });
+    });
+  </script>
+
+  <style>
+    .carousel-img {
+      height: 500px;
+      object-fit: cover;
+    }
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+      background-color: rgba(0, 0, 0, 0.5);
+      border-radius: 50%;
+    }
+    .carousel-inner {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+    }
+    .carousel-item {
+      position: absolute;
+      width: 100%;
+      transition: transform 1s ease;
+    }
+    .carousel-item.active {
+      position: relative;
+      transform: translateX(0);
+    }
+    .carousel-item-next,
+    .carousel-item-prev {
+      position: relative;
+      transform: translateX(100%);
+    }
+    .carousel-item-next.carousel-item-left,
+    .carousel-item-prev.carousel-item-right {
+      transform: translateX(0);
+    }
+  </style>
+
+  <script>
+    $(document).ready(function(){
+      $('#aboutCarousel').carousel({
+        interval: 3000,
+        ride: 'carousel'
       });
     });
   </script>
