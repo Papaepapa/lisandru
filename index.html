@@ -19,6 +19,17 @@
 
   <!-- Custom styles for this template -->
   <link href="css/grayscale.min.css" rel="stylesheet">
+  <style>
+	.inactive-section {
+	    pointer-events: none; /* Disables clicks and interactions */
+	    background-color: #d3d3d3; /* Light gray inactive color */
+	    color: #808080; /* Gray text color */
+	    padding: 20px;
+	    text-align: center;
+	    border-radius: 8px;
+	    opacity: 0.6; /* Makes it look more faded */
+	  }
+  </style>
 
 </head>
 
@@ -98,88 +109,89 @@
 
   <!-- Projects Section -->
   <section id="projects" class="projects-section bg-light">
-    <div class="container">
-
-      <!-- Featured Project Row -->
-      <div class="row align-items-center no-gutters mb-4 mb-lg-5">
-        <div class="col-xl-4 col-lg-7">
-          <img class="img-fluid mb-3 mb-lg-0" src="img/eticheta.jpeg" alt="">
-        </div>
-        <div class="col-xl-4 col-lg-5">
-          <div class="featured-text text-center text-lg-left">
-            <h4>Descriere</h4>
-            <p class="text-black-50 mb-0">Crescuti si urmariti cu grija, strugurii albi de cramposie, struguri negrii  de ananas, cu bob rotund sau cu bob lung cu textura carnoasa sau plini de zeama toti acestia sunt actori principali si in egala masura importanti in obtinerea celor trei soiuri de vinuri din colectia Lisandru.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Project One Row -->
-      <div class="row justify-content-center no-gutters mb-5 mb-lg-0" style='background-color:white;'>
-        <div class="col-lg-6">
-          <img class="img-fluid" src="img/vinRosu2.jpg" alt="">
-        </div>
-        <div class="col-lg-6">
-          <div class="bg-black text-center h-100 project">
-            <div class="d-flex h-100">
-              <div class="project-text w-100 my-auto text-center text-lg-left">
-                <h4 class="text-white">Roșu</h4>
-                <p class="mb-0 text-white-50">Vinul rosu, rubiniu ,puternic dar si cuminte,cu un gust puternic fructat te duce in vie la fiecare sorbitura si aduce la suprafata ce e mai pur si mai inocent in ficare dintre noi.</p>
-                <label for="quantityRosu">Quantity:</label>
-                <input type="number" id="quantityRosu" name="quantityRosu" min="1" max="100" value="1">
-                <button class="btn btn-primary add-to-cart" data-product="Rosu">Add to Cart</button>
-                <hr class="d-none d-lg-block mb-0 ml-0">
+	<div class="inactive-section">
+	    <div class="container">
+	
+	      <!-- Featured Project Row -->
+	      <div class="row align-items-center no-gutters mb-4 mb-lg-5">
+	        <div class="col-xl-4 col-lg-7">
+	          <img class="img-fluid mb-3 mb-lg-0" src="img/eticheta.jpeg" alt="">
+	        </div>
+	        <div class="col-xl-4 col-lg-5">
+	          <div class="featured-text text-center text-lg-left">
+	            <h4>Descriere</h4>
+	            <p class="text-black-50 mb-0">Crescuti si urmariti cu grija, strugurii albi de cramposie, struguri negrii  de ananas, cu bob rotund sau cu bob lung cu textura carnoasa sau plini de zeama toti acestia sunt actori principali si in egala masura importanti in obtinerea celor trei soiuri de vinuri din colectia Lisandru.
+	            </p>
+	          </div>
+	        </div>
+	      </div>
+	
+	      <!-- Project One Row -->
+	      <div class="row justify-content-center no-gutters mb-5 mb-lg-0" style='background-color:white;'>
+	        <div class="col-lg-6">
+	          <img class="img-fluid" src="img/vinRosu2.jpg" alt="">
+	        </div>
+	        <div class="col-lg-6">
+	          <div class="bg-black text-center h-100 project">
+	            <div class="d-flex h-100">
+	              <div class="project-text w-100 my-auto text-center text-lg-left">
+	                <h4 class="text-white">Roșu</h4>
+	                <p class="mb-0 text-white-50">Vinul rosu, rubiniu ,puternic dar si cuminte,cu un gust puternic fructat te duce in vie la fiecare sorbitura si aduce la suprafata ce e mai pur si mai inocent in ficare dintre noi.</p>
+	                <label for="quantityRosu">Quantity:</label>
+	                <input type="number" id="quantityRosu" name="quantityRosu" min="1" max="100" value="1">
+	                <button class="btn btn-primary add-to-cart" data-product="Rosu">Add to Cart</button>
+	                <hr class="d-none d-lg-block mb-0 ml-0">
+	              </div>
+	            </div>
+	          </div>
+	        </div>
+	      </div>
+	
+	      <!-- Project Two Row -->
+	      <div class="row justify-content-center no-gutters" style='background-color:white;'>
+	        <div class="col-lg-6">
+			<div style='float:right; background-color:red;'>
+	          <img class="img-fluid" src="img/vinAlb1.jpg" alt="">
+			</div> 
+	        </div>
+	        <div class="col-lg-6 order-lg-first">
+	          <div class="bg-black text-center h-100 project">
+	            <div class="d-flex h-100">
+	              <div class="project-text w-100 my-auto text-center text-lg-right">
+	                <h4 class="text-white">Alb</h4>
+	                <p class="mb-0 text-white-50">Vinul alb-clar, vinul pur, adevarul in picaturi mici, aspru dar linistitor te tine cu picioarele pe pamant si iti aminteste de ceea ce e cu adevarat bun.</p>
+	                <label for="quantityAlb">Quantity:</label>
+	                <input type="number" id="quantityAlb" name="quantityAlb" min="1" max="100" value="1">
+	                <button class="btn btn-primary add-to-cart" data-product="Alb">Add to Cart</button>
+	                <hr class="d-none d-lg-block mb-0 mr-0">
+	              </div>
+	            </div>
+	          </div>
+	        </div>
+	      </div>
+		  
+		  <!-- Project Two Row -->
+	      <div class="row justify-content-center no-gutters mb-5 mb-lg-0" style='background-color:white;'>
+	        <div class="col-lg-6">
+	          <img class="img-fluid" src="img/vinRose.jpg" alt="">
+	        </div>
+	        <div class="col-lg-6">
+	          <div class="bg-black text-center h-100 project">
+	            <div class="d-flex h-100">
+	              <div class="project-text w-100 my-auto text-center text-lg-left">
+	                <h4 class="text-white">Rose</h4>
+	                <p class="mb-0 text-white-50">Vinul rose, fratele mai mic si putin jucaus, uneori agitant alte ori impaciuitor reuseste sa creeze o legatura intre trup si suflet cum nici un alt vin nu o poate face.</p>
+	                <label for="quantityRose">Quantity:</label>
+	                <input type="number" id="quantityRose" name="quantityRose" min="1" max="100" value="1">
+	                <button class="btn btn-primary add-to-cart" data-product="Rose">Add to Cart</button>
+	                <hr class="d-none d-lg-block mb-0 ml-0">
+	              </div>
+	            </div>
+	          </div>
+	        </div>
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Project Two Row -->
-      <div class="row justify-content-center no-gutters" style='background-color:white;'>
-        <div class="col-lg-6">
-		<div style='float:right; background-color:red;'>
-          <img class="img-fluid" src="img/vinAlb1.jpg" alt="">
-		</div> 
-        </div>
-        <div class="col-lg-6 order-lg-first">
-          <div class="bg-black text-center h-100 project">
-            <div class="d-flex h-100">
-              <div class="project-text w-100 my-auto text-center text-lg-right">
-                <h4 class="text-white">Alb</h4>
-                <p class="mb-0 text-white-50">Vinul alb-clar, vinul pur, adevarul in picaturi mici, aspru dar linistitor te tine cu picioarele pe pamant si iti aminteste de ceea ce e cu adevarat bun.</p>
-                <label for="quantityAlb">Quantity:</label>
-                <input type="number" id="quantityAlb" name="quantityAlb" min="1" max="100" value="1">
-                <button class="btn btn-primary add-to-cart" data-product="Alb">Add to Cart</button>
-                <hr class="d-none d-lg-block mb-0 mr-0">
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-	  
-	  <!-- Project Two Row -->
-      <div class="row justify-content-center no-gutters mb-5 mb-lg-0" style='background-color:white;'>
-        <div class="col-lg-6">
-          <img class="img-fluid" src="img/vinRose.jpg" alt="">
-        </div>
-        <div class="col-lg-6">
-          <div class="bg-black text-center h-100 project">
-            <div class="d-flex h-100">
-              <div class="project-text w-100 my-auto text-center text-lg-left">
-                <h4 class="text-white">Rose</h4>
-                <p class="mb-0 text-white-50">Vinul rose, fratele mai mic si putin jucaus, uneori agitant alte ori impaciuitor reuseste sa creeze o legatura intre trup si suflet cum nici un alt vin nu o poate face.</p>
-                <label for="quantityRose">Quantity:</label>
-                <input type="number" id="quantityRose" name="quantityRose" min="1" max="100" value="1">
-                <button class="btn btn-primary add-to-cart" data-product="Rose">Add to Cart</button>
-                <hr class="d-none d-lg-block mb-0 ml-0">
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
+    	    </div>
+	</div>
   </section>
 
   <!-- Cart Section -->
